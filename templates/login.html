@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <section id="home" class="video-hero"
+             style="height: 150px; background-image: url({% static 'images/hero-bg.jpg' %});  background-size:cover; background-position: center center;background-attachment:fixed;"
+             data-section="home">
+    </section>
+
+    <div class="nikah-blog">
+        <div class="container">
+            <div class="row row-pb-md">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 animate-box">
+                    <h1 class="text-center">Log In</h1>
+                    <form action="{% url 'account_login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <!-- <label for="uname">Username</label> -->
+                                <input type="text" id="uname" name="login" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <!-- <label for="pword">Password</label> -->
+                                <input type="password" id="pword" name="password" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                        {% endif %}
+
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
